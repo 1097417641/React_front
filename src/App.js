@@ -9,10 +9,10 @@ import Admin from './pages/admin/admin';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{height:'100%'}}>
       <Routes>
-        <Route path='/login' element={<Login/>}></Route>
         <Route path='/' element={<Admin/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
       </Routes>
     </div>
   );
