@@ -19,7 +19,7 @@ export default class Admin extends Component {
         }
 
         return (
-            <Layout style={{minHeight: '100'}}>
+            <Layout style={{minHeight: '100%'}}>
                 <Sider>
                     <LeftNav/>
                 </Sider>

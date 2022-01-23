@@ -6,6 +6,7 @@ import storageUtils from '../../utils/storageUtils'
 import menuList from '../../config/menuConfig'
 import { Modal} from 'antd'
 import withRouter from '../route/withRouter'
+import './index.css'
 
 class Header extends Component {
 
@@ -107,8 +108,8 @@ class Header extends Component {
         return (
         <div className="header">
             <div className="header-top">
-            <span>欢迎, {username}</span>
-            <LinkButton onClick={this.logout}>退出</LinkButton>
+              <span>欢迎, {username}</span>
+              <LinkButton onClick={this.logout}>退出</LinkButton>
             </div>
             <div className="header-bottom">
             <div className="header-bottom-left">{title}</div>

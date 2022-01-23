@@ -9,14 +9,11 @@ export default class SearchComponent extends Component {
     render() {
         console.log('search')
         return (
-            <div>
-                This is Search index
                 <div>
                     <Input/>
-
                     <Outlet/>
                 </div>
-            </div>
+
         )
     }
 }

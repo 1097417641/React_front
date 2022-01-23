@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link, useNavigate, useParams, useLocation} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Menu} from 'antd';
 import menuList from '../../config/menuConfig'
 import memoryUtils from '../../utils/memoryUtils';
@@ -116,7 +116,6 @@ class LeftNav extends Component {
 
   render() {
     let path = this.props.location.pathname
-    console.log("render()" , path)
     if(path.indexOf('/search')===0){
       path = '/search'
     }
@@ -129,7 +128,7 @@ class LeftNav extends Component {
         </Link>
         <Menu
           mode="inline"
-          them="dark"
+          theme="dark"
           selectedKeys={[path]}
           defaultSelectedKeys={[openKey]}
         >
