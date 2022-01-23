@@ -27,21 +27,23 @@ function Login () {
         form.validateFields().then(async (values) =>{
         const {username, password} = values
         const result  = await reqLogin(username, password)
+       
         if(result.status===0){
             message.success('登录成功')
 
-            const user = result.validataPwd
+            const user = result.data
+            
             memoryUtils.user = user
             storageUtils.saveUser(user)
-
+            console.log('登陆成功')
             //跳转到管理页面
-            navigate.replace('/')
+            navigate('/', {replace: true});
         }else{
             console.log('请求出错')
             message.error(result.msg)
         }
         }).catch((error)=>{
-            console.log('检验失败')
+            console.log(error)
         })
     }
     
