@@ -3,8 +3,8 @@ import { Layout } from 'antd'
 import LeftNav from '../../compontents/left-nav'
 import Header from '../../compontents/header'
 import memoryUtils from '../../utils/memoryUtils'
-import { Navigate, Routes, Route } from 'react-router-dom'
-import Home from '../home/home'
+import { Navigate, Outlet } from 'react-router-dom'
+
 
 const {Footer, Sider, Content} = Layout
 
@@ -26,14 +26,7 @@ export default class Admin extends Component {
                 <Layout>
                     <Header>Header</Header>
                     <Content style={{margin: 20, backgroundColor: '#fff'}}>
-                        <Routes>
-                           
-                            <Route path='/home' element={<Home/>}/>
-
-                        </Routes>
-
-
-
+                        <Outlet/>
 
 
                     </Content>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Routes, Route} from 'react-router-dom'
+import {Outlet} from 'react-router-dom'
 import Input from './Input'
-import List from './List'
+
 
 
 export default class SearchComponent extends Component {
@@ -13,9 +13,8 @@ export default class SearchComponent extends Component {
                 This is Search index
                 <div>
                     <Input/>
-                    <Routes>
-                        <Route path="/result/:cotent/*" element={<List/>} />
-                    </Routes>
+
+                    <Outlet/>
                 </div>
             </div>
         )
