@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import {Input, Row, Col} from 'antd'
+import {Input, Row, Col, Card} from 'antd'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom' 
 
@@ -22,7 +22,7 @@ const InputComponent = () => {
         axios.get(`/api/search?q=${value}`).then(
             response => {
                 setSearched(false)
-                navigate(`/KG/${value}`, {state: response.data.documents})
+                navigate(`/relation/${value}`, {state: response.data.documents})
             },
             error => {
                 console.log(error.message)
@@ -35,18 +35,20 @@ const InputComponent = () => {
 
     return (
         <div >
-            <Row>
-                <Col span={8}></Col>
-                <Col span={8}>
-                    <Search 
-                        ref={inputContent}
-                        placeholder="input search loading default" 
-                        loading={searched} 
-                        onSearch={onSearch}
-                        />
-                </Col>
-                <Col span={8}></Col>
-            </Row>
+            <Card>
+                <Row>
+                    <Col span={8}></Col>
+                    <Col span={8}>
+                        <Search 
+                            ref={inputContent}
+                            placeholder="input search loading default" 
+                            loading={searched} 
+                            onSearch={onSearch}
+                            />
+                    </Col>
+                    <Col span={8}></Col>
+                </Row>
+            </Card>
         </div>
           
        

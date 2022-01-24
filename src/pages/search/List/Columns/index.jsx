@@ -15,7 +15,7 @@ const columns = [
       title: '案卷提名',
       dataIndex: 'title',
       key: 'title',
-      render: (text, record) => <Link  target="_blank" to={`/KG`}>{text}</Link>
+      render: (text, record) => <Link  to={`/relation/${record.key}`}>{text}</Link>
     },
     {
         title: '起始日期',

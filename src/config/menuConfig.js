@@ -28,8 +28,6 @@ const menuList = [
       key: '/qa',
       //icon: 'user'
     },
-     
-  
 
   ]
   

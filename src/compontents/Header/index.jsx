@@ -35,7 +35,7 @@ class Header extends Component {
     getTitle = () => {
         // 得到当前请求路径
         const path = this.props.location.pathname
-        console.log("Path", path)
+        //console.log("Path", path)
         let title
         menuList.forEach(item => {
           if (item.key===path) { // 如果当前item对象的key与path一样,item的title就是需要显示的title
@@ -104,7 +104,7 @@ class Header extends Component {
         
         // 得到当前需要显示的title
         const title = this.getTitle()
-        console.log("Title", title)
+        //console.log("Title", title)
         return (
         <div className="header">
             <div className="header-top">

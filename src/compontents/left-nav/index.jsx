@@ -75,32 +75,32 @@ class LeftNav extends Component {
     const path = this.props.location.pathname
     return menuList.reduce((pre,item) => {
       //
-      if(this.hashAuth(item)){
         if(!item.children){
           pre.push((
-            <Menu.Item key={item.key}>
-              <Link to={item.key}>
-                <span>{item.title}</span>
-              </Link>
-            </Menu.Item>
-          ))
-        }else {
-
-          const cItem = item.children.find(cItem => path.indexOf(cItem.key)===0)
-          if(cItem){
-            this.openKey = item.key
-          }
-          pre.push((
-            <SubMenu 
-              key={item.key}
-              title={
-              <span>{item.title}</span>}
-            >
-              {this.getMenuNodes(item.children)}
-            </SubMenu>
+              <Menu.Item key={item.key}>
+                <Link to={item.key}>
+                  <span>{item.title}</span>
+                </Link>
+              </Menu.Item>
+            ))
+          }else {
+          // 查找一个与当前请求路径匹配的子Item
+            const cItem = item.children.find(cItem => path.indexOf(cItem.key)===0)
+            // 如果存在, 说明当前item的子列表需要打开
+            if(cItem){
+              this.openKey = item.key
+            }
+            pre.push((
+              <SubMenu 
+                key={item.key}
+                title={
+                <span>{item.title}</span>}
+              >
+                {this.getMenuNodes(item.children)}
+              </SubMenu>
           ))
         }
-      }
+      
       return pre
     }, [])
   }
@@ -110,7 +110,7 @@ class LeftNav extends Component {
    * 为第一个render()准备数据(必须同步的)
    */
   UNSAFE_componentWillMount() {
-    //this.menuNodes = this.getMenuNodes(menuList)
+    this.menuNodes = this.getMenuNodes(menuList)
     console.log("componentWillMount",this.menuNodes)
   }
 
@@ -120,7 +120,7 @@ class LeftNav extends Component {
       path = '/search'
     }
     const openKey = this.openKey
-    console.log(openKey)
+    console.log('openKey', openKey)
     return (
       <div className='left-nav'>
         <Link to='/' className="left-nav-header">
@@ -130,10 +130,10 @@ class LeftNav extends Component {
           mode="inline"
           theme="dark"
           selectedKeys={[path]}
-          defaultSelectedKeys={[openKey]}
+          defaultOpenKeys={[openKey]}
         >
           {
-            this.getMenuNodes_map(menuList)
+            this.menuNodes
           }
 
         </Menu>

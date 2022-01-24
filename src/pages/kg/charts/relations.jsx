@@ -418,7 +418,7 @@ export default class Relations extends Component {
         //const {sales, stores} = this.state
         return (
             <div style={{height:"600px"}}>
-                <Card name='关系图' style={{top:"20px"}} >
+                <Card name='关系图'>
                     <ReactEcharts style={{height:"600px"}} option={this.getOption(nodes, links, categories)} />
                 </Card>
             </div>

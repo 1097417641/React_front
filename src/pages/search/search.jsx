@@ -6,7 +6,17 @@ import Input from './Input'
 
 export default class SearchComponent extends Component {
 
+
+
+
+
+
+
+    
+
+
     render() {
+        
         console.log('search')
         return (
                 <div>
