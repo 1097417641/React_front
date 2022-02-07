@@ -4,10 +4,6 @@ import { Row, Col, Select, Divider, DatePicker} from 'antd'
 
 
 
-
-
-
-
 const {Option}  = Select
 
 export default class detail extends Component {

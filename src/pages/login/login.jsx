@@ -1,13 +1,15 @@
 //import React, { Component } from 'react'
 import React, {useState, useEffect} from 'react';
 import { reqLogin } from '../../api'
-import { message, Form,Input, Button, Card} from 'antd'
+import { message, Form,Input, Button, Card, Typography } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import memoryUtils from '../../utils/memoryUtils'
 import storageUtils from '../../utils/storageUtils'
 import {Navigate, useNavigate} from 'react-router-dom'
 import './login.css'
+
 const {Item} = Form
+const {Title} = Typography
 
 function Login () {
 
@@ -25,21 +27,23 @@ function Login () {
         form.validateFields().then(async (values) =>{
         const {username, password} = values
         const result  = await reqLogin(username, password)
+       
         if(result.status===0){
             message.success('登录成功')
 
-            const user = result.validataPwd
+            const user = result.data
+            
             memoryUtils.user = user
             storageUtils.saveUser(user)
-
+            console.log('登陆成功')
             //跳转到管理页面
-            navigate.replace('/')
+            navigate('/', {replace: true});
         }else{
             console.log('请求出错')
             message.error(result.msg)
         }
         }).catch((error)=>{
-            console.log('检验失败')
+            console.log(error)
         })
     }
     
@@ -61,15 +65,13 @@ function Login () {
 
 
      return (
-       <div>
+       <div className='login'>
         {
         (user&&user._id) ?
             <Navigate replace to='/'/> 
                          :            
-            <div className='login'>
-                <header className="login-header">
-                    <h1 style={{'color': '#fff'}}>档案检索: 知识图谱档案检索</h1>
-                </header>
+            <div >
+                <Title className='login-header'>档案检索: 知识图谱档案检索</Title>
                 <Card className='login-content'>
                     <Form
                         name="normal_login"
@@ -103,7 +105,7 @@ function Login () {
                         </Item>
 
                         <Item>
-                            <Button type="primary" htmlType="submit" className="login-form-nbutton">
+                            <Button type="primary" htmlType="submit" className="login-form-nbutton" shape='round'>
                             登录
                             </Button>
                         </Item>

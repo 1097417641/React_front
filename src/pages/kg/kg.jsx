@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import Input from "./Input/input"
-import RelationKG  from './charts/relations'
+import { Outlet } from 'react-router-dom'
 export default class KG extends Component {
     
     state = {
@@ -13,7 +13,7 @@ export default class KG extends Component {
         return (
             <div className='KG' style={{height:"700px"}}>
                 <Input/>
-                <RelationKG  />
+                <Outlet/>
 
             </div>
         )
