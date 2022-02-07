@@ -70,7 +70,7 @@ class Header extends Component {
             memoryUtils.user = {}
 
             // 跳转到login
-            this.props.history.replace('/login')
+            this.props.navigate('/login')
         }
         })
     }

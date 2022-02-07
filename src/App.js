@@ -7,6 +7,8 @@ import Kg from './pages/kg/kg'
 import List from './pages/search/List'
 import RelationKG from './pages/kg/charts/relations'
 import Qa from './pages/qa/qa'
+import AddDocument from './pages/search/add-docuemnt';
+
 
 function App() {
   return (
@@ -15,9 +17,8 @@ function App() {
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/' element={<Admin/>}>
           <Route path='home' element={<Home/>}/>
-          <Route path='search' element={<Search/>}>
-            <Route path=':value' element={<List/>}></Route>
-          </Route>
+          <Route path='search' element={<Search/>}/>
+          <Route path='search/addDocument' element={<AddDocument/>}/>
           <Route path='relation' element={<Kg/>}>
             <Route path=':value' element={<RelationKG/>}></Route>
           </Route>

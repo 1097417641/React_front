@@ -411,6 +411,9 @@ export default class Relations extends Component {
     //     }
     //   }
     
+    handleChartClick = () => {
+      
+    }
 
 
     render() {
@@ -419,7 +422,10 @@ export default class Relations extends Component {
         return (
             <div style={{height:"600px"}}>
                 <Card name='关系图'>
-                    <ReactEcharts style={{height:"600px"}} option={this.getOption(nodes, links, categories)} />
+                    <ReactEcharts 
+                      style={{height:"600px"}} 
+                      option={this.getOption(nodes, links, categories)} 
+                      onEvents={this.handleChartClick}/>
                 </Card>
             </div>
         )

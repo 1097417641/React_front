@@ -14,3 +14,10 @@ const BASE = '/api'
 
 export const reqLogin = (username, password) => axjx(BASE + '/login', {username, password}, 'POST')
 
+
+export const reqDocuments = (pageNum, pageSize) => axjx(BASE + '/documents/list', {pageNum, pageSize})
+
+export const reqSearchDocuments = ({pageNum, pageSize, searchName, searchType}) => axjx(BASE + '/documents/search',{pageNum, pageSize, searchName, searchType})
+
+
+

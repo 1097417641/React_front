@@ -12,7 +12,7 @@ const columns = [
       key: 'year',
     },
     {
-      title: '案卷提名',
+      title: '案卷题名',
       dataIndex: 'title',
       key: 'title',
       render: (text, record) => <Link  to={`/relation/${record.key}`}>{text}</Link>
