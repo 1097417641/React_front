@@ -1,4 +1,3 @@
-
 import { Layout } from 'antd';
 import Header from './compontents/Header'
 import Content from './compontents/Content'
