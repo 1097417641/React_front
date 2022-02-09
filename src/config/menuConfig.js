@@ -11,5 +11,18 @@ const menuList = [
     // },
 
   ]
+
+const dropdownMenuList = [
+  {
+    title:'关于系统',
+    key: 1,
+
+  },
+  {
+    title:'退出登录',
+    key:2
+  }
+]
+
   
-  export default menuList
+  export  {menuList, dropdownMenuList}

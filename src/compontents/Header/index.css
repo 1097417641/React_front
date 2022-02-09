@@ -31,3 +31,8 @@ h1 {
   display: inline-block;
   color: #666666;
 }
+
+.drop-menu{
+  font-size: 10px;
+  padding-right: 20px;
+}
