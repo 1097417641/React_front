@@ -66,16 +66,13 @@ function Login () {
 
      return (
        <div className='login'>
-        {
-        (user&&user._id) ?
-            <Navigate replace to='/'/> 
-                         :            
-            <div >
-                <Title className='login-header'>档案检索: 知识图谱档案检索</Title>
-                <Card className='login-content'>
-                    <Form
-                        name="normal_login"
-                        className="login-form"
+        
+           
+        <div >
+            <Card className='login-content'>
+                <Form
+                    name="normal_login"
+                     className="login-form"
                         initialValues={
                             {username: 'admin',}
                         }
@@ -110,13 +107,13 @@ function Login () {
                             </Button>
                         </Item>
                     </Form>
-                </Card>
+            </Card>
                 
                 
-            </div>
+        </div>
         
             
-        }
+        
         </div>
         )
 }

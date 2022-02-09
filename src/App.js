@@ -14,15 +14,14 @@ function App() {
   return (
     <div className="App" style={{height:'100%'}}>
       <Routes>
-        <Route path='/login' element={<Login/>}></Route>
         <Route path='/' element={<Admin/>}>
+          <Route path="login" element={<Login/>}/>
           <Route path='home' element={<Home/>}/>
           <Route path='search' element={<Search/>}/>
           <Route path='search/addDocument' element={<AddDocument/>}/>
           <Route path='relation' element={<Kg/>}>
             <Route path=':value' element={<RelationKG/>}></Route>
           </Route>
-          <Route path='qa' element={<Qa/>}></Route>
         </Route>
       </Routes>
     </div>
