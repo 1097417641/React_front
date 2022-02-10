@@ -1,0 +1,13 @@
+
+.search{
+   
+    background-color: #fff;
+    
+}
+
+.search-input{
+    display: inline-block;
+    white-space: nowrap;
+    padding-top: 15px;
+    margin-left: 30%;
+}

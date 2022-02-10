@@ -1,32 +1,54 @@
-import {Table} from 'antd'
-import { useLocation} from "react-router-dom";
-import columns from './Columns';
+import { useLocation, useSearchParams } from "react-router-dom";
+import { PAGE_SIZE } from '../../../utils/constant'
 import React, { useEffect, useState } from 'react'
+import { reqSearchDocuments, reqDocuments } from '../../../api'
+import { useSelector, useDispatch } from "react-redux";
+import {fetchDocument} from './documentSlice' 
+import {Card, Table} from 'antd'
+import columns from './Columns'
 
+//const Option = Select.Option
+function ListComponent(){
+  const [loading, setLoading] = useState(false)
+  const[pageNum, setPageNum] = useState(1)
 
-const  List = () =>  {
-
-
-  const [searchList, setSearchList] = useState([])
+  const {list, total} = useSelector((state) => state.document)
+  const dispatch = useDispatch()
+  const [searchParams, setSearchParams]= useSearchParams()
   const location = useLocation()
 
-    useEffect(() => {
+  console.log("list", list)  
 
-        const searchResult = location.state
-        console.log(location)
-        setSearchList(searchResult)
-        
-      },[location])
+  useEffect(() => {
+    const searchContent = searchParams.get('q')
+    const searchType = searchParams.get('type')
+    dispatch(fetchDocument({pageNum:pageNum, pageSize:PAGE_SIZE, searchContent:searchContent,  searchType:searchType}))
 
-      
+  },[])
 
-  
+
+
+
   return (
       <div>
-        <Table size="small" columns={columns} dataSource={searchList}/>
+        <Card>
+          <Table
+            bordered
+            dataSource={list}
+            columns={columns}
+            pagination={{
+              total:total,
+              pageNum:pageNum,
+              defaultPageSize: PAGE_SIZE,
+              showQuickJumper: true,
+            }}
+          /> 
+          Hello World
+        </Card>
       </div>
-    
-  )
+
+    )
 }
 
-export default List
+
+export default ListComponent

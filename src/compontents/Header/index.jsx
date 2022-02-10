@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import LinkButton from '../link-button'
 import memoryUtils from '../../utils/memoryUtils'
-import { Menu, Button, Dropdown } from 'antd'
+import storageUtils from '../../utils/storageUtils'
+import { Modal, Menu, Button, Dropdown } from 'antd'
 
 import withRouter from '../route/withRouter'
 import { Link } from 'react-router-dom'
@@ -27,6 +27,21 @@ class Header extends Component {
         break
       case "2":
         console.log("退出登录")
+     
+          // 显示确认框
+        Modal.confirm({
+          content: '确定退出吗?',
+          onOk: () => {
+              console.log('OK', this)
+              // 删除保存的user数据
+              storageUtils.removeUser()
+              memoryUtils.user = {}
+  
+              // 跳转到login
+              this.props.navigate('/')
+          }
+          })  
+      
         break
       default: break
     }

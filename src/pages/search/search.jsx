@@ -1,111 +1,69 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import {
-    Card,
-    Select,
-    Input,
-    Button,
-    Table,
-
-  } from 'antd'
-import {PlusOutlined} from '@ant-design/icons'
-import LinkButton from '../../compontents/link-button'
-import {PAGE_SIZE} from '../../utils/constant'
-import columns from './List/Columns'
-import withRouter from '../../compontents/route/withRouter'
+  Select,
+  Input,
+  Row,
+} from 'antd'
+import { Outlet, useNavigate, useSearchParams } from 'react-router-dom'
+import { PAGE_SIZE } from "../../utils/constant"
 import { reqSearchDocuments, reqDocuments } from '../../api'
+import './search.css'
 
-const Option = Select.Option
-class SearchComponent extends Component {
-    
-    
-    state = {
-        total: 0, // 档案的总数量
-        documents: [], // 档案的数组
-        loading: false, // 是否正在加载中
-        searchName: '', // 搜索的关键字
-        searchType: 'documentName', // 根据哪个字段搜索
-      }
-    
-      getDocuments = async (pageNum) => {
 
-        this.pageNum = pageNum // 保存pageNum, 让其它方法可以看到
-        this.setState({loading: true}) // 显示loading
-        
-        console.log('Search Page', this.state)
-        const {searchName, searchType} = this.state
-        // 如果搜索关键字有值, 说明我们要做搜索分页
-        let result
-        if (searchName) {
-          result = await reqSearchDocuments({pageNum, pageSize: PAGE_SIZE, searchName, searchType})
-        } else { // 一般分页请求
-          result = await reqDocuments(pageNum, PAGE_SIZE)
-        }
-    
-        this.setState({loading: false}) // 隐藏loading
-        console.log('Search Page', result.data)
-        if (result.status === 0) {
-          // 取出分页数据, 更新状态, 显示分页列表
-          const {total, list} = result.data
-          this.setState({
-            total,
-            documents: list
-          })
-        }
-      }
+const Option = Select.Option;
+const { Search } = Input;
+
+function SearchComponent() {
+
+
+  
+  const [searchContent, setSearchContent] = useState('')
+  const [searchType, setSearchType] = useState('name')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
 
 
 
-    render() {
-        const {documents, total, loading, searchType, searchName} = this.state
-        
-        const title = (
-            <span>
-              <Select
-                value= {searchType}
-                style={{width: 150}}
-                onChange={value => this.setState({searchType:value})}
-              >
-                <Option value='documentName'>按名称搜索</Option>
-                <Option value='documentContent'>按内容搜索</Option>
-              </Select>
-              <Input
-                placeholder='关键字'
-                style={{width: 150, margin: '0 15px'}}
-                value={searchName}
-                onChange={event => this.setState({searchName:event.target.value})}
-              />
-              <Button type='primary' onClick={() => this.getDocuments(1)}>搜索</Button>
-            </span>
-          )
-      
-          const extra = (
-            <Button type='primary' onClick={() => this.props.navigate('/search/addDocument')}>
-              <PlusOutlined />
-              添加档案
-            </Button>
-          )
-      
 
-       
-        return (
-            <Card title={title} extra={extra}>
-                <Table
-                    bordered
-                    loading={loading}
-                    dataSource={documents}
-                    columns={columns}
-                    pagination={{
-                        current: this.pageNum,
-                        total,
-                        defaultPageSize: PAGE_SIZE,
-                        showQuickJumper: true,
-                        onChange: this.getDocuments
-                    }}
-                />
-          </Card>
+  // const extra = (
+  //   <Button type='primary' onClick={() => this.props.navigate('/search/addDocument')}>
+  //     <PlusOutlined />
+  //     添加档案
+  //   </Button>
+  // )
 
-        )
-    }
+  return (
+    <div className='search'>
+      <span className='search-input'>
+        <Select
+          defaultValue={searchParams.get('type') || searchType}
+          style={{ width: 150 }}
+          onChange={value => setSearchType(value)}
+        >
+          <Option value='name'>按名称搜索</Option>
+          <Option value='content'>按内容搜索</Option>
+        </Select>
+        <Search
+          placeholder="请输入需要检索的内容"
+          enterButton="搜索"
+          value={searchParams.get("q") || searchContent}
+          onChange={event => setSearchContent(event.target.value)}
+          style={{ width: 350, margin: '0 15px' }}
+          onSearch={() => navigate(`document?q=${searchContent}&type=${searchType}`)}
+        />
+      </span>
+      <Row>
+        <Outlet />
+      </Row>
+      <Row>
+
+      </Row>
+    </div>
+
+
+
+  )
 }
 
-export default withRouter(SearchComponent)
+
+export default SearchComponent
