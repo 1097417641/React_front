@@ -12,7 +12,7 @@ const {Search} = Input
 const InputComponent = () => {
     
     const [searched, setSearched] = useState(false)
-    const [detail, setDetail] = useState(false)
+    const [detail, setDetail] = useState(true)
     const inputContent = useRef()
     const navigate = useNavigate()
 
@@ -24,7 +24,7 @@ const InputComponent = () => {
             response => {
                 PubSub.publish('search', {searchList: response.data.documents })
                 setSearched(false)
-                navigate(`/search/result/${value}`, {state: response.data.documents})
+                navigate(`/search/${value}`, {state: response.data.documents})
             },
             error => {
                 console.log(error.message)
