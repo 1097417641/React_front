@@ -4,9 +4,9 @@ import Admin from './pages/admin/admin';
 import Home from './pages/home/home'
 import Search from './pages/search/search'
 import Kg from './pages/kg/kg'
-import List from './pages/search/list'
-import RelationKG from './pages/kg/charts/relations'
+import List from './pages/search/list' 
 import AddDocument from './pages/search/add-docuemnt';
+
 import store from './app/store';
 import { Provider } from 'react-redux';
 
@@ -19,13 +19,9 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path='home' element={<Home />} />
             <Route path='search' element={<Search />}>
-              <Route path='document' element={<List />}>
-              </Route>
+              <Route path='document' element={<List />}></Route> 
             </Route>
             <Route path='search/addDocument' element={<AddDocument />} />
-            <Route path='relation' element={<Kg />}>
-              <Route path=':value' element={<RelationKG />}></Route>
-            </Route>
           </Route>
         </Routes>
       </div>

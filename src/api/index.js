@@ -7,17 +7,19 @@
  */
 
 import { message } from "antd";
-import axjx from "./ajax"
+import ajax from "./ajax"
 
 const BASE = '/api'
 
 
-export const reqLogin = (username, password) => axjx(BASE + '/login', {username, password}, 'POST')
+export const reqLogin = (username, password) => ajax(BASE + '/login', {username, password}, 'POST')
 
 
-export const reqDocuments = (pageNum, pageSize) => axjx(BASE + '/documents/search', {pageNum, pageSize})
+export const reqDocuments = ({pageNum, pageSize}) => ajax(BASE + '/documents/search', {pageNum, pageSize})
 
-export const reqSearchDocuments = ({pageNum, pageSize, searchName, searchType}) => axjx(BASE + '/documents/search',{pageNum, pageSize, searchName, searchType})
+export const reqSearchDocuments = ({searchName, searchType}) => ajax(BASE + '/documents/search',{searchName, searchType})
+
+export const reqSearchRelation = ({key}) => ajax(BASE + "/documents/search/relation", {key})
 
 
 

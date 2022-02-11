@@ -13,8 +13,8 @@ const columns = [
     // },
     {
       title: '案卷题名',
-      dataIndex: 'title',
-      key: 'title',
+      dataIndex: 'name',
+      key: 'name',
       render: (text, record) => <Link  to={`/relation/${record.key}`}>{text}</Link>
     },
     // {
